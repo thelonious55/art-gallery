@@ -1,4 +1,4 @@
-const PostModel = require("../models/post");
+const ArtModel = require("../models/art");
 
 
 
@@ -27,8 +27,8 @@ async function index(req, res) {
     // this populates the user when you find the posts
     // so you'll have access to the users information
     // when you fetch teh posts
-    const posts = await PostModel.find({}).populate("user").exec();
-    res.status(200).json({ posts });
+    const art = await ArtModel.find({}).populate("user").exec();
+    res.status(200).json({ art });
   } catch (err) {
     res.json({error: err})
   }
