@@ -7,6 +7,7 @@ export default function PageHeader(){
         <Segment>
             <Header as='h2' >
               <Button href='/discover'>Discover</Button>
+              <Button href='/gallery'>Gallery</Button>
             </Header>
         </Segment>
     )

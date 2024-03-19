@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react"
 import ArtCard from "../../components/ArtCard/ArtCard"
-import { Segment } from "semantic-ui-react"
+import { Segment, Grid } from "semantic-ui-react"
+import PageHeader from '../../components/Header/Header'
+import DiscoverFeed from "../../components/DiscoverFeed/DiscoverFeed"
 
 export default function DiscoverPage () {
     
-    const [artData, setArtData] = useState({})
+    const [artData, setArtData] = useState([])
     const [loading, setLoading] = useState(true)
 
-
+    
 
 
     useEffect(() => {
-        const apiEndPoint = 'https://api.artic.edu/api/v1/artworks/27992?fields=id,title,image_id'
+        const apiEndPoint = 'https://api.artic.edu/api/v1/artworks?limit=4'
         
 
 
@@ -22,7 +24,11 @@ export default function DiscoverPage () {
                 const response = await fetch(apiEndPoint)
                 const data = await response.json()
                 console.log(data, 'from the API')
-                setArtData(data)
+                const artLinks = data.data.map((e) => {
+                    return (data.config.iiif_url + '/' + e.image_id + '/full/843,/0/default.jpg'
+                    )
+                })
+                setArtData(artLinks)
             } catch(err) {
                 console.log(err)
             }
@@ -43,7 +49,8 @@ export default function DiscoverPage () {
     
     return (
         <Segment>
-            {loading ? <h3>loading</h3> : <ArtCard art={artData} />}
+            <PageHeader />
+            {loading ? <h3>loading</h3> : <DiscoverFeed artData={artData} />}
         </Segment>
         
         
