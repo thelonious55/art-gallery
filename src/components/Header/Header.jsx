@@ -1,11 +1,12 @@
-import { Header, Segment} from 'semantic-ui-react';
+import { Button, Header, Segment} from 'semantic-ui-react';
+
 
 
 export default function PageHeader(){
     return (
         <Segment>
             <Header as='h2' >
-              This is the HEADER!
+              <Button href='/discover'>Discover</Button>
             </Header>
         </Segment>
     )
