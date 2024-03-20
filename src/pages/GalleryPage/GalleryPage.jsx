@@ -2,44 +2,45 @@ import PageHeader from "../../components/Header/Header"
 import AddArtForm from "../../components/AddArtForm/AddArtForm"
 import { useEffect, useState } from 'react'
 import tokenService from "../../utils/tokenService"
+import { Image } from 'semantic-ui-react'
 
 export default function GalleryPage() {
-   
-    const [artPieces, setArtPieces] = useState([])
-    const [loading, setLoading] = useState(true)
 
-    async function handleAddArt(artToSendTOServer){
-        console.log(artToSendTOServer, " formData from addArt form")
-    
+    const [artPieces, setArtPieces] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    async function handleAddArt(artToSendToServer) {
+        console.log(artToSendToServer, " formData from addArt form")
+
         try {
             // Since we are sending a photo
             // we are sending a multipart/formdData request to express
             // so express needs to have multer setup on this endpoint!
             const response = await fetch('/api/art', {
                 method: 'POST',
-                body: artToSendTOServer, // < No jsonify because we are sending a photo
+                body: artToSendToServer, // < No jsonify because we are sending a photo
                 headers: {
-                        // convention for sending jwts, tokenService is imported above
-                        Authorization: "Bearer " + tokenService.getToken() // < this is how we get the token from localstorage 
-                        //and and it to our api request
-                        // so the server knows who the request is coming from when the client is trying to make a POST
-                    }
+                    // convention for sending jwts, tokenService is imported above
+                    Authorization: "Bearer " + tokenService.getToken() // < this is how we get the token from localstorage 
+                    //and and it to our api request
+                    // so the server knows who the request is coming from when the client is trying to make a POST
+                }
             })
-    
+
             const data = await response.json();
             //       res.status(201).json({ post }); this value is from express/posts/create controller
             console.log(data, ' response from post request! This from express')
             setArtPieces([data.art, ...artPieces])
-            
-        } catch(err){
+
+        } catch (err) {
             console.log(err.message)
             console.log('CHECK YOUR SERVER TERMINAL!!!!')
         }
-    
-      }
-    
-   
-    async function getArt(){
+
+    }
+
+
+    async function getArt() {
         try {
             setLoading(true)
             const response = await fetch('/api/art', {
@@ -52,26 +53,40 @@ export default function GalleryPage() {
             const data = await response.json()
             setLoading(false)
             console.log(data)
-            setArtPieces(data.artPieces)
-        } catch(err) {
+            setArtPieces(data.art)
+            
+        } catch (err) {
             console.log(err)
         }
-    }  
+    }
+
+
 
     useEffect(() => {
         getArt()
+
     }, [])
 
-   return (
+    return (
         <>
             <PageHeader />
-            
-            {loading ? <h1>loading</h1> : <AddArtForm handleAddArt={handleAddArt} />}
-        
-        
-        
-        
+
+            {loading ? <h1>loading</h1> :
+
+                <>
+
+                    <AddArtForm handleAddArt={handleAddArt} />
+                    
+                    
+
+                </>
+
+            }
+
+
+
+
         </>
-        
+
     )
 }

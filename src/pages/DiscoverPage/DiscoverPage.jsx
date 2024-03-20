@@ -13,7 +13,7 @@ export default function DiscoverPage () {
 
 
     useEffect(() => {
-        const apiEndPoint = 'https://api.artic.edu/api/v1/artworks?limit=4'
+        const apiEndPoint = 'https://api.artic.edu/api/v1/artworks?limit=9'
         
 
 
