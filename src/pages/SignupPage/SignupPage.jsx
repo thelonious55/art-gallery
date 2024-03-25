@@ -74,7 +74,7 @@ export default function SignUpPage({handleSignUpOrLogin}) {
       // new user in state!
 
       // Change the view to the home page!
-      navigate('/');// navigate acceps a path defined by a route!
+      navigate('/gallery');// navigate acceps a path defined by a route!
 
     } catch(err){
       console.log(err.message, " <- this comes from tht throw in utils/signup")
@@ -97,7 +97,7 @@ export default function SignUpPage({handleSignUpOrLogin}) {
     <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="purple" textAlign="center">
-          <Image src="https://i.imgur.com/TM4eA5g.jpg" /> Sign Up
+           Sign Up
         </Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
           <Segment stacked>
