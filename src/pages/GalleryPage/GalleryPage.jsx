@@ -2,7 +2,7 @@ import PageHeader from "../../components/Header/Header"
 import AddArtForm from "../../components/AddArtForm/AddArtForm"
 import { useEffect, useState } from 'react'
 import tokenService from "../../utils/tokenService"
-import { Image } from 'semantic-ui-react'
+
 import GalleryFeed from "../../components/GalleryFeed/GalleryFeed"
 
 

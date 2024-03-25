@@ -76,6 +76,7 @@ export default function AddArtForm({handleAddArt}) {
                     name="photo"
                     placeholder="upload image"
                     onChange={handleFileInput}
+                    
                 />
                 <Button type='submit'>
                     Submit

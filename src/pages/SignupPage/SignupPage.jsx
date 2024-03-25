@@ -145,6 +145,7 @@ export default function SignUpPage({handleSignUpOrLogin}) {
                 name="photo"
                 placeholder="upload image"
                 onChange={handleFileInput}
+                
               />
             </Form.Field>
             <Button type="submit" className="btn">

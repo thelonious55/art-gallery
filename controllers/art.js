@@ -69,9 +69,8 @@ async function index(req, res) {
 
 async function deleteArt(req, res) {
   try {
-    const art = await ArtModel.findOne({'artist._id': req.params.id, 'art.username': req.user.username})
-    art.remove(req.params.id)
-    await art.save()
+    const art = await ArtModel.findOneAndDelete(req.params.id)
+    
     res.json({data: 'art removed'})
   } catch(err) {
     res.status(400).json({err})
