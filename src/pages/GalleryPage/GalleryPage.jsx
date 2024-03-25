@@ -3,6 +3,7 @@ import AddArtForm from "../../components/AddArtForm/AddArtForm"
 import { useEffect, useState } from 'react'
 import tokenService from "../../utils/tokenService"
 import { Image } from 'semantic-ui-react'
+import GalleryFeed from "../../components/GalleryFeed/GalleryFeed"
 
 export default function GalleryPage() {
 
@@ -60,6 +61,8 @@ export default function GalleryPage() {
         }
     }
 
+   
+
 
 
     useEffect(() => {
@@ -77,7 +80,7 @@ export default function GalleryPage() {
 
                     <AddArtForm handleAddArt={handleAddArt} />
                     
-                    
+                    <GalleryFeed artPieces={artPieces} />
 
                 </>
 

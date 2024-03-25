@@ -14,6 +14,7 @@ export default function AddArtForm({handleAddArt}) {
 
     function handleFileInput(e) {
         setPhoto(e.target.files[0])
+        console.log('button pressed')
     }
 
     function handleChange(e) {

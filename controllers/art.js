@@ -20,15 +20,15 @@ function create(req, res) {
   console.log(req.file, req.body, req.user)
   // check to make sure a file was sent over
   const filePath = `pupstagram/${uuidv4()}-${req.file.originalname}`
-  const params = {Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer}
+  const params = { Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer }
   // Upload our file to aws (request/response to aws)
-  s3.upload(params, async function(err, data) {
+  s3.upload(params, async function (err, data) {
     console.log("=======================");
     console.log(err, " err from aws");
     console.log("=======================");
     if (err) return res.status(400).json({ err: "Check Terminal error with AWS" });
     try {
-        // then save our post to mongodb (request and response to mongodb)
+      // then save our post to mongodb (request and response to mongodb)
       // Using our model to create a document in the posts collection in mongodb
       const art = await ArtModel.create({
         artist: req.body.artist,
@@ -45,7 +45,7 @@ function create(req, res) {
 
       // respond to the client!
       // 201 means resource created!
-        // then respond to the client (completing a request, by making response to the client(browser))
+      // then respond to the client (completing a request, by making response to the client(browser))
       res.status(201).json({ art });
     } catch (err) {
       res.status(400).json({ err });
@@ -62,6 +62,7 @@ async function index(req, res) {
     const art = await ArtModel.find({}).populate("user").exec();
     res.status(200).json({ art });
   } catch (err) {
-    res.json({error: err})
+    res.json({ error: err })
   }
 }
+

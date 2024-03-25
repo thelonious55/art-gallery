@@ -16,6 +16,7 @@ router.get('/', artCtrl.index)
 
 
 
+
 /*---------- Protected Routes ----------*/
 
 
