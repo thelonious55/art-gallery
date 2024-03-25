@@ -4,7 +4,8 @@ const ArtModel = require("../models/art");
 
 module.exports = {
   create,
-  index
+  index,
+  deleteArt
 };
 
 const { v4: uuidv4 } = require('uuid');
@@ -66,3 +67,13 @@ async function index(req, res) {
   }
 }
 
+async function deleteArt(req, res) {
+  try {
+    const art = await ArtModel.findOne({'artist._id': req.params.id, 'art.username': req.user.username})
+    art.remove(req.params.id)
+    await art.save()
+    res.json({data: 'art removed'})
+  } catch(err) {
+    res.status(400).json({err})
+  }
+}

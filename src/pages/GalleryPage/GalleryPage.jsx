@@ -5,6 +5,7 @@ import tokenService from "../../utils/tokenService"
 import { Image } from 'semantic-ui-react'
 import GalleryFeed from "../../components/GalleryFeed/GalleryFeed"
 
+
 export default function GalleryPage() {
 
     const [artPieces, setArtPieces] = useState([])
@@ -62,7 +63,24 @@ export default function GalleryPage() {
     }
 
    
+    async function removeArt(artId) {
+        try {
+            const response = await fetch(`/api/art/${artId}`, {
+                method: 'DELETE',
+                headers: {
+                  // convention for sending jwts in a fetch request
+                  Authorization: "Bearer " + tokenService.getToken(),
+                  // We send the token, so the server knows who is making the
+                  // request
+                } 
+              })
 
+              const data = await response.json()
+              getArt()
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
 
     useEffect(() => {
@@ -80,7 +98,7 @@ export default function GalleryPage() {
 
                     <AddArtForm handleAddArt={handleAddArt} />
                     
-                    <GalleryFeed artPieces={artPieces} />
+                    <GalleryFeed artPieces={artPieces} removeArt={removeArt}/>
 
                 </>
 
