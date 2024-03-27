@@ -6,7 +6,7 @@ import tokenService from "../../utils/tokenService"
 import GalleryFeed from "../../components/GalleryFeed/GalleryFeed"
 
 
-export default function GalleryPage() {
+export default function GalleryPage({loggedUser, handleLogout}) {
 
     const [artPieces, setArtPieces] = useState([])
     const [loading, setLoading] = useState(false)
@@ -90,7 +90,7 @@ export default function GalleryPage() {
 
     return (
         <>
-            <PageHeader />
+            <PageHeader loggedUser={loggedUser} handleLogout={handleLogout}/>
 
             {loading ? <h1>loading</h1> :
 

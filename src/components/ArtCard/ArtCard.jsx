@@ -9,15 +9,11 @@ export default function ArtCard({artPiece, removeArt}) {
 
     return (
         <Card>
-            <Image src={artPiece.photoUrl} wrapped ui={false} />
-            <Card.Content>
-                <Card.Header>{artPiece.title}</Card.Header>
-                <Card.Meta>{artPiece.artist}</Card.Meta>
-                <Card.Description>
-                    {artPiece.description}
-                </Card.Description>
-                <Icon name='ban' onClick={handleClick}></Icon>
-            </Card.Content>
+            <Image src={artPiece.photoUrl} wrapped ui={false} size='small'/>
+            
+                
+            <Icon name='ban' onClick={handleClick}></Icon>
+            
         </Card>
     );
     

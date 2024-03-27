@@ -4,7 +4,7 @@ import { Segment, Grid } from "semantic-ui-react"
 import PageHeader from '../../components/Header/Header'
 import DiscoverFeed from "../../components/DiscoverFeed/DiscoverFeed"
 
-export default function DiscoverPage () {
+export default function DiscoverPage ({loggedUser, handleLogout}) {
     
     const [artData, setArtData] = useState([])
     const [loading, setLoading] = useState(true)
@@ -49,7 +49,7 @@ export default function DiscoverPage () {
     
     return (
         <Segment>
-            <PageHeader />
+            <PageHeader loggedUser={loggedUser} handleLogout={handleLogout}/>
             {loading ? <h3>loading</h3> : <DiscoverFeed artData={artData} />}
         </Segment>
         

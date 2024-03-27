@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useState } from 'react'
 import "./App.css";
+import { Navigate } from 'react'
 
 import SignUpPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -9,6 +10,7 @@ import DiscoverPage from "./pages/DiscoverPage/DiscoverPage";
 // ANY component that is rendered by a route, should be stored in the 
 // pages folder. Every page is like an app component
 import userService from "./utils/userService";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   // the userService.getUser() when the page loads it goes into localstorage and looks for a jwt
@@ -20,13 +22,18 @@ function App() {
     // in order to get the token sent back from express and store the decoded token in the state
     setUser(userService.getUser())
   }
+
+  function handleLogout(){
+    userService.logout()
+    setUser(null)
+  }
   return (
     <Routes>
-      <Route path='/discover' element={<DiscoverPage />} />
-      <Route path='/gallery' element={<GalleryPage />} />
-      <Route path="/" element={<h1>Home Page</h1>} />
-      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-      <Route path='/signup' element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+      <Route path='/discover' element={<DiscoverPage loggedUser={user} handleLogout={handleLogout}/>} />
+      <Route path='/gallery' element={<GalleryPage loggedUser={user} handleLogout={handleLogout}/>} />
+      <Route path="/" element={<HomePage loggedUser={user} handleLogout={handleLogout}/>} />
+      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} loggedUser={user}/>} />
+      <Route path='/signup' element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin} loggedUser={user}/>} />
  
     </Routes>
   );
