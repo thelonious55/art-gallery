@@ -92,7 +92,7 @@ export default function GalleryPage({loggedUser, handleLogout}) {
         <>
             <PageHeader loggedUser={loggedUser} handleLogout={handleLogout}/>
 
-            {loading ? <h1>loading</h1> :
+            {loading ? <h1>loading, please login in</h1> :
 
                 <>
 

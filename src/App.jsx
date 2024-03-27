@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { useState } from 'react'
 import "./App.css";
-import { Navigate } from 'react'
+
 
 import SignUpPage from "./pages/SignupPage/SignupPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -26,6 +26,7 @@ function App() {
   function handleLogout(){
     userService.logout()
     setUser(null)
+    
   }
   return (
     <Routes>

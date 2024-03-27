@@ -6,11 +6,6 @@ export default function ArtCard({artPiece, removeArt}) {
         removeArt(artPiece._id)
     }
 
-
-    // <Icon name='ban' onClick={handleClick}></Icon>
-    // <Image src={artPiece.photoUrl} wrapped ui={false} size='small'/>
-
-
     return (
         <Card>
             
