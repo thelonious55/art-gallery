@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import "./App.css";
 
 
@@ -26,7 +26,11 @@ function App() {
   function handleLogout(){
     userService.logout()
     setUser(null)
-    
+  
+
+  useEffect (() => {
+
+  },[user])
   }
   return (
     <Routes>

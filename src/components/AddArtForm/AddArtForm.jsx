@@ -2,14 +2,14 @@ import { Form, Segment, Button } from "semantic-ui-react";
 import { useState } from 'react'
 
 
-export default function AddArtForm({handleAddArt}) {
-    
+export default function AddArtForm({ handleAddArt }) {
+
     const [state, setState] = useState({
         artist: '',
         year: '',
         info: ''
     })
-    
+
     const [photo, setPhoto] = useState({})
 
     function handleFileInput(e) {
@@ -23,7 +23,7 @@ export default function AddArtForm({handleAddArt}) {
             [e.target.name]: e.target.value
         })
     }
-    
+
     function handleSubmit(e) {
         e.preventDefault()
         const formData = new FormData()
@@ -31,19 +31,27 @@ export default function AddArtForm({handleAddArt}) {
         formData.append('year', state.year)
         formData.append('info', state.info)
         formData.append('photo', photo)
+        setState({
+            artist: '',
+            year: '',
+            info: ''
+        })
+        setPhoto({
+            
+        })
         handleAddArt(formData)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
     return (
         <Segment>
             <Form autoComplete='off' onSubmit={handleSubmit}>
@@ -76,7 +84,7 @@ export default function AddArtForm({handleAddArt}) {
                     name="photo"
                     placeholder="upload image"
                     onChange={handleFileInput}
-                    
+
                 />
                 <Button type='submit'>
                     Submit
